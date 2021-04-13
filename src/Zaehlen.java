@@ -14,6 +14,12 @@ public class Zaehlen {
             }
         }
     }
+
+    /**
+     *
+     * @param input Der Übergebene Parameter beim Ausführen des Javaprogramms
+     * @return true bei validen Übergabeparameter ansonsten false
+     */
     static boolean  checkInput(String[] input){
         if(input.length == 1 && Integer.parseInt(input[0]) > 0 ){
             return true;
