@@ -71,6 +71,10 @@ public class Fraction {
      * @return  Gibt den Bruch mit dem Ergebnis der division zurück.
      */
     public Fraction divide(Fraction divisor){
+        if(divisor.getNumerator() == 0){
+            System.out.println("Bei der Division darf der Zähler vom Divisor nicht 0 sein");
+            return null;
+        }
         return new Fraction(numerator * divisor.denominator, denominator * divisor.numerator);
     }
 
