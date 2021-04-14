@@ -2,10 +2,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ *  Die Klasse zählt auf der Konsole bis zur an das Programm übergebenen Zahl.
+ */
 public class Zaehlen {
 
     public static void main(String[] args) {
-
         if(checkInput(args)) {
             int i = 0;
             while (i < Integer.parseInt(args[0])) {
@@ -17,7 +19,7 @@ public class Zaehlen {
 
     /**
      *
-     * @param input Der Übergebene Parameter beim Ausführen des Javaprogramms
+     * @param input Der uebergebene Parameter beim ausführen des Javaprogramms
      * @return true bei validen Übergabeparameter ansonsten false
      */
     static boolean  checkInput(String[] input){
