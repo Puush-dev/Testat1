@@ -1,7 +1,3 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 /**
  *  Die Klasse zählt auf der Konsole bis zur an das Programm übergebenen Zahl.
  */
