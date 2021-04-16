@@ -1,91 +1,85 @@
 /**
- * Die Klassen bildet einen Bruch ab.
+ * Repräsentiert einen Bruch
+ *
+ * Dabei wird eine Multiplikation und Division als Operation unterstützt.
+ *
  */
 public class Fraction {
-    /**
-     * Der Zähler vom Bruch.
-     */
-    public int numerator;
-    /**
-     * Der Nenner vom Bruch.
-     */
-    public int denominator;
 
     /**
-     *  Getter für Numerator
-     * @return Gibt den Numerator zurück
+     * Repräsentiert den Zähler eines Bruchs
      */
-    public int getNumerator() {
-        return numerator;
-    }
-    /**
-     * Getter für Denominator
-     * @return Gibt den Denominator zurück
-     */
-    public int getDenominator() {
-        return denominator;
-    }
+    private int numerator;
 
-    /** Konstruktur mit einem Parameter
-     * Der Nenner im Bruch wird mit 1 initialisiert
-     * @param numerator Gibt den Zähler im Bruch an
+    /**
+     * Repräsentiert den Nener eines Bruchs
+     */
+    private int denominator;
+
+    /**
+     * @param numerator Zähler des Bruchs
      */
     public Fraction(int numerator){
         this(numerator, 1);
     }
 
-    /**  Konstruktur mit zwei Parameter
-     * @param numerator Gibt den Zähler im Bruch an
-     * @param denominator Gibt den Nenner im Bruch an
+    /**
+     * @param numerator Zähler des Bruchs
+     * @param denominator Nenner des Bruchs
      */
     public Fraction(int numerator, int denominator){
         this.numerator = numerator;
+
         if(denominator == 0) {
-         denominator = 1;
-         System.out.println("0 ist ein valider Nenner ! Der Nenner wurde auf 1 gesetzt.");
+            denominator = 1;
+            System.out.println("0 ist kein valider Nenner. Der Nenner wurde auf 1 gesetzt.");
         }
+
         this.denominator = denominator;
     }
 
     /**
-     * Erzeugt einen neuen Bruch der das Ergebnis von Übergabeparameter mal dem Bruch enthält
-     * @param factor Ein ganzzahlige Faktor der mit dem aktuellen Bruch multipliziert werden soll.
-     * @return Gibt den Bruch mit dem Ergebnis der multiplikation zurück.
+     * @return Zähler des Bruches
      */
-    public Fraction multiply(int factor){
+    public int getNumerator() {
+        return numerator;
+    }
+    /**
+     * @return Nenner des Bruches
+     */
+    public int getDenominator() {
+        return denominator;
+    }
+
+    /**
+     * Multipliziert den Bruch mit einem Faktor
+     *
+     * @param factor Ganzzahlige Faktor der mit dem aktuellen Bruch multipliziert werden soll
+     * @return liefert einen Bruch mit dem Ergebnis
+     */
+    public Fraction multiply(int factor) {
         return new Fraction(numerator * factor,denominator);
     }
 
     /**
-     * Erzeugt einen neuen Bruch der das Ergebnis von Übergabeparameter mal dem Bruch enthält.
-     * @param factor Der Bruch der mit der aktuellen Bruch multipliziert werden soll.
-     * @return Gibt den Bruch mit dem Ergebnis der multiplikation zurück.
+     * Multipliziert den Bruch mit einem anderen
+     *
+     * @param factor Bruch mit dem der aktuelle Bruch multipliziert werden soll
+     * @return liefert einen Bruch mit dem Ergebnis
      */
-    public Fraction multiply(Fraction factor){
+    public Fraction multiply(Fraction factor) {
         return new Fraction(numerator * factor.numerator, denominator * factor.denominator);
     }
 
     /**
-     * Erzeugt einen neuen Bruch der das Ergbenis von dem aktuellen Bruch geteilt durch den Übergabeparameter.
-     * @param divisor Der Bruch durch den der aktuelle Bruch dividiert werden soll.
-     * @return  Gibt den Bruch mit dem Ergebnis der division zurück.
-     */
-    public Fraction divide(Fraction divisor){
-        if(divisor.getNumerator() == 0){
-            System.out.println("Bei der Division darf der Zähler vom Divisor nicht 0 sein");
-            return null;
-        }
-        return new Fraction(numerator * divisor.denominator, denominator * divisor.numerator);
-    }
-
-    /**
-     * Erzeugt einen neuen Bruch der das Ergebnis von den Übergabeparametern mal dem Bruch enthält.
-     * Dabei können beliebig viele Parameter Übergeben werden.
-     * @param factors Die Brüche die mit dem aktuellen Bruch multipliziert werden sollen.
-     * @return  Gibt den Bruch mit dem Ergebnis der multiplikation zurück.
+     * Multipliziert eine beliebige Anzahl an Brüchen
+     *
+     * @param factors Brüche die mit dem aktuellen Bruch multipliziert werden sollen
+     * @return liefert einen Bruch mit dem Ergebnis
      */
     public Fraction multiply(Fraction... factors){
         int newNumerator = this.numerator, newDenominator = this.denominator;
+
         for (Fraction factor : factors) {
             newNumerator *= factor.numerator;
             newDenominator *= factor.denominator;
@@ -94,11 +88,26 @@ public class Fraction {
     }
 
     /**
-     * Ermöglicht den aktuellen Bruch als Text auszurgebe
-     * @return Gibt den Bruch in Textform zurück.
+     * Dividiert den Bruch mit einem anderen
+     *
+     * @param divisor Bruch durch den der aktuelle Bruch dividiert werden soll
+     * @return liefert einen Bruch mit dem Ergebnis
      */
-    public String toString(){
-       return numerator + "/" + denominator;
+    public Fraction divide(Fraction divisor) {
+        if(divisor.getNumerator() == 0){
+            System.out.println("Bei der Division darf der Zähler vom Divisor nicht 0 sein");
+            return null;
+        }
+        return new Fraction(numerator * divisor.denominator, denominator * divisor.numerator);
     }
 
+    /**
+     * Formatierte Darstellung eines Bruches als String
+     *
+     * @return Darstellung des Bruches als String
+     */
+    @Override
+    public String toString() {
+        return numerator + "/" + denominator;
+    }
 }
