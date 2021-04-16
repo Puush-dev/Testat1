@@ -69,11 +69,22 @@ public class TestFraction {
 
         assertString(frac.toString(), "Fehler in testToString");
     }
+    private void testGCD(){
+        Fraction frac1 = new Fraction(0,0);
+        assertBool(frac1.getNumerator() == 1 && frac1.getDenominator() == 1, "Fehler in testGCD #1");
+        Fraction frac2 = new Fraction(6,2);
+        assertBool(frac2.getNumerator() == 3 && frac1.getDenominator() == 1, "Fehler in testGCD #2");
+        Fraction frac3 = new Fraction(2,6);
+        assertBool(frac3.getNumerator() == 1 && frac1.getDenominator() == 3, "Fehler in testGCD #3");
+        Fraction frac4 = new Fraction(2,5);
+        assertBool(frac4.getNumerator() == 2 && frac1.getDenominator() == 5, "Fehler in testGCD #4");
+    }
 
     /**
      * Führt alle Test nacheinander aus
      */
     public void testAll() {
+        this.testGCD();
         this.testMultiplyInt();
         this.testMultiply();
         this.testMultiplyMulti();

@@ -28,14 +28,18 @@ public class Fraction {
      * @param denominator Nenner des Bruchs
      */
     public Fraction(int numerator, int denominator){
-        this.numerator = numerator;
-
+          if(numerator == 0) {
+            numerator = 1;
+            System.out.println("0 ist kein valider Zähler. Der Zähler wurde auf 1 gesetzt.");
+        }
         if(denominator == 0) {
             denominator = 1;
             System.out.println("0 ist kein valider Nenner. Der Nenner wurde auf 1 gesetzt.");
         }
+        int gcd = gcd(numerator,denominator);
 
-        this.denominator = denominator;
+        this.numerator = numerator / gcd;
+        this.denominator = denominator / gcd ;
     }
 
     /**
@@ -94,11 +98,7 @@ public class Fraction {
      * @return liefert einen Bruch mit dem Ergebnis
      */
     public Fraction divide(Fraction divisor) {
-        if(divisor.getNumerator() == 0){
-            System.out.println("Bei der Division darf der Zähler vom Divisor nicht 0 sein");
-            return null;
-        }
-        return new Fraction(numerator * divisor.denominator, denominator * divisor.numerator);
+                return new Fraction(numerator * divisor.denominator, denominator * divisor.numerator);
     }
 
     /**
@@ -109,5 +109,19 @@ public class Fraction {
     @Override
     public String toString() {
         return numerator + "/" + denominator;
+    }
+
+    /**
+     * Findet den größten gemeinsamen Teiler
+     * @param a Erste Zahl für die ein gemeinsamer Teiler gefunden werden soll.
+     * @param b Zweite Zahl für die ein gemeinsamer Teiler gefunden werden soll.
+     * @return Gibt den größten gemeinsamen Teiler zurück.
+     */
+    public static int gcd(int a, int b) {
+        if (b == 0) {
+            return a;
+        } else {
+            return gcd(b , a%b);
+        }
     }
 }
